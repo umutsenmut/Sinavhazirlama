@@ -20,7 +20,7 @@ class Settings(BaseSettings):
     DEBUG: bool = False
 
     # Güvenlik
-    SECRET_KEY: str = "geliştirme-için-değiştirin-üretimde-güçlü-anahtar"
+    SECRET_KEY: str = "gelistirme-icin-degistirin-uretimde-guclu-anahtar-kullanin!"
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
     REFRESH_TOKEN_EXPIRE_DAYS: int = 7
@@ -42,6 +42,13 @@ class Settings(BaseSettings):
     # Dosya yükleme
     UPLOAD_DIR: str = "uploads"
     MAX_UPLOAD_SIZE_MB: int = 10
+
+    @field_validator("SECRET_KEY")
+    @classmethod
+    def validate_secret_key(cls, v: str) -> str:
+        if len(v) < 32:
+            raise ValueError("SECRET_KEY en az 32 karakter olmalıdır")
+        return v
 
     @field_validator("ALLOWED_ORIGINS", mode="before")
     @classmethod

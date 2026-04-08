@@ -74,7 +74,7 @@ def create_app() -> FastAPI:
     async def validation_handler(request: Request, exc: ValidationException) -> JSONResponse:
         return JSONResponse(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-            content={"hata": exc.message, "kod": "DOĞRULAMA_HATASI", "ayrıntılar": exc.details},
+            content={"hata": exc.message, "kod": "DOĞRULAMA_HATASI", "ayrintilar": exc.details},
         )
 
     @app.exception_handler(GeminiException)

@@ -10,7 +10,7 @@ T = TypeVar("T")
 class ErrorResponse(BaseModel):
     hata: str
     kod: str
-    ayrıntılar: object | None = None
+    ayrintilar: object | None = None
 
 
 class PaginatedResponse(BaseModel, Generic[T]):

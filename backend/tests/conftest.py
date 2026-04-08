@@ -15,7 +15,7 @@ from app.models.user import User
 from app.models.workspace import Workspace
 from app.core.security import hash_password
 
-TEST_DATABASE_URL = "sqlite+aiosqlite:///./test_sinavhazirlama.db"
+TEST_DATABASE_URL = "sqlite+aiosqlite:///:memory:"
 
 test_engine = create_async_engine(TEST_DATABASE_URL, echo=False)
 TestSessionLocal = async_sessionmaker(
