@@ -37,6 +37,44 @@ ports:
   - "8001:8000"  # 8000 yerine 8001 kullanın
 ```
 
+#### Async veritabanı sürücüsü hatası
+
+```
+sqlalchemy.exc.InvalidRequestError: The asyncio extension requires an async driver to be used. The loaded 'psycopg2' is not async.
+```
+veya
+```
+ModuleNotFoundError: No module named 'psycopg2'
+```
+
+**Neden Oluşur:**  
+Proje SQLAlchemy async extension kullanmaktadır. Bu extension yalnızca async sürücülerle (PostgreSQL için `asyncpg`, SQLite için `aiosqlite`) çalışır. Standart `psycopg2` async değildir ve bu kurulumla uyumsuzdur.
+
+**Çözüm:**  
+`DATABASE_URL` değerinin doğru async formatını kullandığından emin olun:
+
+```dotenv
+# PostgreSQL için (zorunlu):
+DATABASE_URL=postgresql+asyncpg://admin:password@db:5432/sinavhazirlama
+
+# SQLite için (zorunlu):
+DATABASE_URL=sqlite+aiosqlite:///./sinavhazirlama.db
+
+# YANLIŞ - Bu formatlar çalışmaz:
+# DATABASE_URL=postgresql://...
+# DATABASE_URL=postgresql+psycopg2://...
+```
+
+`requirements.txt` dosyasında hem `asyncpg` hem de `aiosqlite` paketlerinin mevcut olduğundan emin olun. Docker kullanıyorsanız image'ı yeniden oluşturun:
+
+```bash
+docker-compose down
+docker-compose build --no-cache backend
+docker-compose up -d
+```
+
+---
+
 #### Veritabanı bağlantısı kurulamıyor
 
 ```
@@ -183,6 +221,40 @@ Change the host port in `docker-compose.yml`:
 ```yaml
 ports:
   - "8001:8000"   # Use 8001 instead of 8000
+```
+
+#### Async database driver error
+
+```
+sqlalchemy.exc.InvalidRequestError: The asyncio extension requires an async driver to be used. The loaded 'psycopg2' is not async.
+```
+or
+```
+ModuleNotFoundError: No module named 'psycopg2'
+```
+
+**Cause:** The project uses SQLAlchemy's async extension, which requires async drivers only. For PostgreSQL this means `asyncpg`; for SQLite it means `aiosqlite`. The standard `psycopg2` driver is synchronous and will not work here.
+
+**Fix:** Make sure `DATABASE_URL` uses the correct async format:
+
+```dotenv
+# PostgreSQL (required format):
+DATABASE_URL=postgresql+asyncpg://admin:password@db:5432/sinavhazirlama
+
+# SQLite (required format):
+DATABASE_URL=sqlite+aiosqlite:///./sinavhazirlama.db
+
+# WRONG – these formats will NOT work:
+# DATABASE_URL=postgresql://...
+# DATABASE_URL=postgresql+psycopg2://...
+```
+
+If running Docker, rebuild the backend image after any dependency change:
+
+```bash
+docker-compose down
+docker-compose build --no-cache backend
+docker-compose up -d
 ```
 
 #### Database connection failure
