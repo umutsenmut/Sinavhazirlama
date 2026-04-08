@@ -25,3 +25,5 @@ migrations/versions/*.py
 .gitignore
 README.md
 tests/
+test_*.db
+uploads/
