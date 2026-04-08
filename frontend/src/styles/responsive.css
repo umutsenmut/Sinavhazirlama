@@ -1,0 +1,69 @@
+/* Mobile-first breakpoints */
+
+/* xs: < 480px - handled by mobile-first defaults */
+
+/* sm: >= 480px */
+@media (min-width: 480px) {
+  .hide-xs { display: initial; }
+}
+
+/* md: >= 768px */
+@media (min-width: 768px) {
+  .hide-sm { display: initial; }
+  .show-sm-only { display: none; }
+}
+
+/* lg: >= 1024px */
+@media (min-width: 1024px) {
+  .hide-md { display: initial; }
+}
+
+/* xl: >= 1280px */
+@media (min-width: 1280px) {
+  .hide-lg { display: initial; }
+}
+
+/* Utility classes */
+.container {
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-inline: var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-inline: var(--space-8);
+  }
+}
+
+/* Grid helpers */
+.grid-responsive {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .grid-responsive {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-responsive {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .grid-responsive {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

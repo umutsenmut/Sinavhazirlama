@@ -1,0 +1,63 @@
+/* Light theme (default) */
+[data-theme='light'],
+:root {
+  color-scheme: light;
+}
+
+/* Dark theme */
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --color-primary: #3b82f6;
+  --color-primary-dark: #2563eb;
+  --color-primary-light: #1e3a5f;
+  --color-primary-hover: #60a5fa;
+
+  --color-text-primary: #f9fafb;
+  --color-text-secondary: #e5e7eb;
+  --color-text-muted: #6b7280;
+  --color-text-inverse: #111827;
+
+  --color-bg-primary: #111827;
+  --color-bg-secondary: #1f2937;
+  --color-bg-card: #1f2937;
+  --color-bg-overlay: rgba(0, 0, 0, 0.7);
+
+  --color-border: #374151;
+  --color-border-focus: #3b82f6;
+
+  --color-success-light: #052e16;
+  --color-warning-light: #431407;
+  --color-danger-light: #450a0a;
+  --color-info-light: #0c4a6e;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0,0,0,.3);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,.4), 0 2px 4px -1px rgba(0,0,0,.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,.4), 0 4px 6px -2px rgba(0,0,0,.2);
+}
+
+/* System preference fallback */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+
+    --color-primary: #3b82f6;
+    --color-primary-dark: #2563eb;
+    --color-primary-light: #1e3a5f;
+
+    --color-text-primary: #f9fafb;
+    --color-text-secondary: #e5e7eb;
+    --color-text-muted: #6b7280;
+
+    --color-bg-primary: #111827;
+    --color-bg-secondary: #1f2937;
+    --color-bg-card: #1f2937;
+
+    --color-border: #374151;
+  }
+}
+
+/* Transition for theme switching */
+body {
+  transition: background-color var(--transition-base), color var(--transition-base);
+}
