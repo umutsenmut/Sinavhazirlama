@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from typing import Any
 
 from pydantic import field_validator
@@ -43,6 +44,19 @@ class Settings(BaseSettings):
     UPLOAD_DIR: str = "uploads"
     MAX_UPLOAD_SIZE_MB: int = 10
 
+    @field_validator("DATABASE_URL")
+    @classmethod
+    def validate_database_url(cls, v: str) -> str:
+        """Ensure DATABASE_URL uses an async driver compatible with SQLAlchemy async."""
+        async_schemes = ("postgresql+asyncpg://", "sqlite+aiosqlite://")
+        if not any(v.startswith(scheme) for scheme in async_schemes):
+            raise ValueError(
+                "DATABASE_URL must use an async driver. "
+                "Use 'postgresql+asyncpg://' for PostgreSQL or 'sqlite+aiosqlite://' for SQLite. "
+                f"Got: {v!r}"
+            )
+        return v
+
     @field_validator("SECRET_KEY")
     @classmethod
     def validate_secret_key(cls, v: str) -> str:
@@ -53,7 +67,16 @@ class Settings(BaseSettings):
     @field_validator("ALLOWED_ORIGINS", mode="before")
     @classmethod
     def parse_origins(cls, v: Any) -> list[str]:
+        """Accept ALLOWED_ORIGINS as a JSON array string, a comma-separated string, or a list."""
         if isinstance(v, str):
+            v = v.strip()
+            if v.startswith("["):
+                try:
+                    parsed = json.loads(v)
+                    if isinstance(parsed, list):
+                        return [str(origin).strip() for origin in parsed if str(origin).strip()]
+                except json.JSONDecodeError:
+                    pass
             return [origin.strip() for origin in v.split(",") if origin.strip()]
         return v
 

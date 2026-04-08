@@ -8,6 +8,33 @@ Sınavhazırlama **PostgreSQL 15** kullanmaktadır. Geliştirme ortamında SQLit
 
 ---
 
+## Async Sürücü Gereksinimleri
+
+SQLAlchemy async extension yalnızca **async sürücüler** ile çalışır. Yanlış sürücü kullanımı şu hataya yol açar:
+
+```
+sqlalchemy.exc.InvalidRequestError: The asyncio extension requires an async driver to be used.
+```
+
+| Veritabanı | Zorunlu Sürücü | Bağlantı URL Formatı |
+|---|---|---|
+| PostgreSQL | `asyncpg` | `postgresql+asyncpg://user:pass@host:5432/dbname` |
+| SQLite | `aiosqlite` | `sqlite+aiosqlite:///./dbname.db` |
+
+### `.env` veya `docker-compose.yml` Örneği
+
+```dotenv
+# PostgreSQL (Docker Compose ortamı – önerilen):
+DATABASE_URL=postgresql+asyncpg://admin:password@db:5432/sinavhazirlama
+
+# SQLite (lokal geliştirme):
+DATABASE_URL=sqlite+aiosqlite:///./sinavhazirlama.db
+```
+
+> ⚠️ `postgresql://` veya `postgresql+psycopg2://` formatlarını **kullanmayın**. Bunlar sync sürücülerdir ve async SQLAlchemy ile çalışmaz.
+
+---
+
 ## Tablolar ve İlişkiler
 
 ### `workspaces` – Çalışma Alanları

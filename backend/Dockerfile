@@ -9,6 +9,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
+# NOTE: asyncpg is required for PostgreSQL (SQLAlchemy async extension does not support psycopg2).
+# aiosqlite is required for SQLite in async mode.
 RUN pip install --upgrade pip && \
     pip wheel --no-cache-dir --wheel-dir /app/wheels -r requirements.txt
 
@@ -40,7 +42,7 @@ USER appuser
 
 EXPOSE 8000
 
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
     CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/v1/health')"
 
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "2"]
