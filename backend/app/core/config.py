@@ -38,7 +38,7 @@ class Settings(BaseSettings):
     GOOGLE_DRIVE_ROOT_FOLDER_ID: str = ""
 
     # CORS
-    ALLOWED_ORIGINS: list[str] = ["http://localhost:3000", "http://localhost:5173"]
+    ALLOWED_ORIGINS: str | list[str] = ["http://localhost:3000", "http://localhost:5173"]
 
     # Dosya yükleme
     UPLOAD_DIR: str = "uploads"
