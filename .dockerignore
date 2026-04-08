@@ -1,0 +1,65 @@
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+
+# ── Ortam & Gizlilik ──────────────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+credentials.json
+*.pem
+*.key
+
+# ── Veritabanı ────────────────────────────────────────────────────────────────
+*.db
+*.sqlite
+*.sqlite3
+
+# ── Node / Frontend ───────────────────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+frontend/dist/
+frontend/.vite/
+
+# ── Yüklenen Dosyalar ─────────────────────────────────────────────────────────
+backend/uploads/
+uploads/
+
+# ── IDE & Sistem ──────────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ── Git ───────────────────────────────────────────────────────────────────────
+.git/
+.gitignore
+
+# ── Docker ────────────────────────────────────────────────────────────────────
+docker-compose*.yml
+.dockerignore
+
+# ── Dokümantasyon ─────────────────────────────────────────────────────────────
+docs/
+*.md
