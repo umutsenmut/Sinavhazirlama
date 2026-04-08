@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import json
 import logging
-import os
 from datetime import datetime
 from pathlib import Path
 
@@ -26,7 +25,6 @@ class DocumentService:
         import docx
         from docx.enum.text import WD_ALIGN_PARAGRAPH
         from docx.shared import Inches, Pt, RGBColor
-        from docx.oxml.ns import qn
 
         doc = docx.Document()
 

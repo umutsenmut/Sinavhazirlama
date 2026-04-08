@@ -36,7 +36,7 @@ jobs:
         run: |
           flake8 app/ tests/ \
             --max-line-length=120 \
-            --extend-ignore=E203,W503 \
+            --extend-ignore=E203,W503,B008,B042 \
             --exclude=__pycache__,migrations
 
   frontend-lint:

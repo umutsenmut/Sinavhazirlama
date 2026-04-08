@@ -2,9 +2,6 @@ from __future__ import annotations
 
 import pytest
 from httpx import AsyncClient
-from sqlalchemy.ext.asyncio import AsyncSession
-
-from app.models.exam import Exam
 
 
 @pytest.mark.asyncio
