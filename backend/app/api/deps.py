@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from typing import AsyncGenerator
-
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from sqlalchemy.ext.asyncio import AsyncSession

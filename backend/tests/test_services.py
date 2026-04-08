@@ -6,8 +6,6 @@ import pytest
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.security import hash_password, verify_password
-from app.models.exam import Exam
-from app.models.question import Question
 from app.services.user_service import UserService
 from app.services.workspace_service import WorkspaceService
 from app.services.exam_service import ExamService

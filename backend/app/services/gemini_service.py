@@ -34,7 +34,7 @@ Aşağıdaki bilgilere göre sınav soruları oluştur:
 - Başlık: {exam.title}
 
 GÖREV: Bu ders ve sınıf seviyesine uygun, öğrenci başarısını ölçen 20 adet soru hazırla.
-Karışık soru tipleri kullan: Çoktan seçmeli, açık uçlu, doğru/yanlış ve boşluk doldurma.
+Karışık soru tipleri kullan: {type_desc}.
 
 ZORUNLU FORMAT: Yanıtını YALNIZCA aşağıdaki JSON formatında ver, başka hiçbir metin ekleme:
 

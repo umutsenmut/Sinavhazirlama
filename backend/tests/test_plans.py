@@ -25,7 +25,13 @@ async def test_upload_plan(test_client: AsyncClient, auth_headers: dict, test_us
     response = await test_client.post(
         "/api/v1/plans",
         headers=auth_headers,
-        files={"file": ("yillik_plan.docx", docx_bytes, "application/vnd.openxmlformats-officedocument.wordprocessingml.document")},
+        files={
+            "file": (
+                "yillik_plan.docx",
+                docx_bytes,
+                "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            )
+        },
     )
     assert response.status_code == 201
     data = response.json()
