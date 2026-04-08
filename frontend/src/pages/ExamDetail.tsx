@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useFetch } from '../hooks/useFetch';
 import { getExam, generateExam, downloadExam, triggerDownload } from '../services/exam';
 import Button from '../components/Common/Button';
@@ -228,6 +228,3 @@ function QuestionCard({ question, index }: { question: Question; index: number }
     </div>
   );
 }
-
-// Suppress unused import
-void Link;

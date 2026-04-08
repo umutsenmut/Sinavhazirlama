@@ -32,9 +32,9 @@ export default function NotFound() {
           Aradığınız sayfa mevcut değil veya taşınmış olabilir.
         </p>
         <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <a href="/panel" className="btn-link">
+          <Link to="/panel">
             <Button>🏠 Ana Sayfaya Dön</Button>
-          </a>
+          </Link>
           <Button variant="ghost" onClick={() => window.history.back()}>
             ← Geri Git
           </Button>
@@ -43,6 +43,3 @@ export default function NotFound() {
     </div>
   );
 }
-
-// Suppress unused import
-void Link;

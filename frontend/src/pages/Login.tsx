@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-import { validateEmail, validatePassword } from '../utils/validators';
+import { validateEmail } from '../utils/validators';
 import Button from '../components/Common/Button';
 import Alert from '../components/Common/Alert';
 
@@ -120,6 +120,3 @@ export default function Login() {
     </div>
   );
 }
-
-// Suppress unused import warning
-void validatePassword;
